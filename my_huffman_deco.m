@@ -17,6 +17,10 @@ function [sig] = my_huffman_deco(code, symbols, probs)
             code_chunk = code(i:j);
             for k = 1:len_hc
                 hc = string(huff_codes(k));
+                if hc == '_'
+                    hc = ' ';
+                end
+                
                 if strcmp(code_chunk, hc)
                     sig = strcat(sig, dict(k));
                     %i = j;

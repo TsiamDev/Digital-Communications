@@ -4,16 +4,25 @@ function [c] = my_huffman_dict(symbols, probs)
     len_p = length(probs);
     if len_s ~= len_p
         disp('length of symbols and propabilities must match');
-        return
+        return;
     end
+    
+    % sort probs in descending order
+    % and keep the sort index in <sortIdx>
+    [probs ,sortIdx] = sort(probs,'descend');
+    % sort symbols using the sorting index
+    symbols = symbols(sortIdx);
+    
+    
     %initialize emtpy cell array    
     c = cell(len_s, 3);
+    %construct cell array with the sorted symbols/probs
     for i = 1:len_s
         c(i,1) = {symbols(i,1)};
         c(i,2) = {probs(i,1)};
         c(i,3) = {''};
     end
-    
+
     %step-by-step creation of huffman dict
     for i = 1:len_s-1
         %add the two last probs

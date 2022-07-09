@@ -4,7 +4,7 @@ function [code, avg_len] = my_huffman_enco(tex, symbols, probs)
     %calculate average length of code
     sum_ = 0;
     for i = 1:length(dict)
-        sum_ = sum_ + probs(i) * strlength(dict(i, 3));
+        sum_ = sum_ + strlength(dict(i, 3));
     end
     avg_len = sum_ / length(dict);
     
@@ -12,6 +12,9 @@ function [code, avg_len] = my_huffman_enco(tex, symbols, probs)
     code = '';
     for i = 1:len_t
        cur_letter = string(tex(i));
+       if cur_letter == ' '
+           cur_letter = '_';
+       end
        t = strcmp(dict(:,1), cur_letter);
        j = find(t);
        code = strcat(code, dict(j,3));
