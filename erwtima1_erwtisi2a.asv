@@ -1,0 +1,11 @@
+t = fileread('cvxopt.txt')
+letters = ['a';'b';'c';'d';'e';'f';'g';'h';'i';'j';'k';
+    'l';'m';'n';'o';'p';'q';'r';'s';'t';'u';'v';'x';'y';'z';' ']
+
+counts = zeros(26,1);
+for i = 1:26
+    counts(i,1) = {letters(i)};
+    counts(i,2) = {count(t, letters(i))};
+end
+%t = counts(:,2);
+total_letters = sum(t);
