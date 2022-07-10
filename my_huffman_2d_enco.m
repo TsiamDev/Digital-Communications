@@ -20,4 +20,5 @@ function [dict2d, avg_len] = my_huffman_2d_enco(freqs2d)
         sum_ = sum_ + strlength(dict2d(i, 3));
     end
     avg_len = sum_ / length(dict2d);
+    %avg_len = length(dict2d) * 729;
 end
