@@ -13,7 +13,8 @@ x = randn(1, M);
 N = 4;
 min_value = min(x)
 max_value = max(x)
-[xq, centers, D] = Lloyd_Max(x, N, min_value, max_value);
+tol = 0.0001;
+[xq, centers, D] = Lloyd_Max(x, N, min_value, max_value, tol);
 %plot(xq);
 %hold off;
 
