@@ -1,13 +1,14 @@
 function [xq, MSE, SNR, D] = Lloyd_Max(x, N, min_value, max_value, tol)
     x_original = x;
     %Get total number of QLevels (upper bound)
-    b = 2^N;
+
     %Get a random number of Qlevels
-    M = randi(b) + 1;
-    if M == b + 1
-        M = b;
+    M = randi(N) + 1;
+    if M == N + 1
+        M = N;
     end
-    M = 2^N
+    M = 2^M;
+    
     %Calculate Qlevels' values
     step = (max_value-min_value)/(M-1)
     x_hat = min_value:step:max_value
@@ -22,7 +23,7 @@ function [xq, MSE, SNR, D] = Lloyd_Max(x, N, min_value, max_value, tol)
     SNR(1, 1) = inf;
     p = 2;
     
-    [xq, d] = helper_func(x_original, a_i, x_hat, min_value, max_value);
+    [xq, d] = helper_func(x_original, a_i, x_hat)
     [mse, snr] = metrics(x_original, xq);
     MSE(1, p) = mse;
     SNR(1, p) = snr;
